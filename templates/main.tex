@@ -9,7 +9,7 @@
 \newcommand{\试卷类别}{A}
 \newcommand{\考试方式}{闭卷}
 \newcommand{\打印纸张}{a4paper} % 有待处理 a3paper 的结构问题
-\newcommand{\展示答案}{true} % true or false
+\newcommand{\展示答案}{false} % true or false
 
 
 
@@ -28,7 +28,7 @@
 	\usepackage{ctex,xcolor,mathtools,amssymb}
 	% Exam 文类选项
 		% 提示语配置
-		\renewcommand{\solutiontitle}{\noindent\textbf{答案:}}
+		\renewcommand{\solutiontitle}{\noindent\textbf{解答:}}
 		% 正确答案样式
 		\CorrectChoiceEmphasis{\color{black}\bfseries}
 		% 分数计量
@@ -43,9 +43,12 @@
 			{\end{choices}}
 		\newcommand{\填空}[1]{\fillin[#1]}
 		\newcommand{\判断正误}[1]{\fillin[#1][0.25in]}
+		\newenvironment{解答}%
+			{\begin{solutionorbox}}%
+			{\end{solutionorbox}}
 		\newenvironment{解析}%
 			{\renewcommand{\solutiontitle}{\noindent\textbf{解析:}}\begin{solutionorbox}}
-			{\renewcommand{\solutiontitle}{\noindent\textbf{答案:}}\end{solutionorbox}}
+			{\renewcommand{\solutiontitle}{\noindent\textbf{解答:}}\end{solutionorbox}}
 	% 测试文档
 	\usepackage{zhlipsum}
 \begin{document}
@@ -83,5 +86,20 @@
 		这里为解析部分: \zhlipsum[1]
 	\end{解析}
 	% 简答题
+	\question[20] 本题为简答题.
+	\begin{parts}
+		\part[10] 解答题的第一小题:
+			\begin{subparts}
+				\subpart[5] 解答题的第一小题的第一小问.
+				\subpart[5] 解答题的第一小题的第二小问.
+			\end{subparts}
+		\part[10] 解答题的第二小题.
+	\end{parts}
+	\begin{解答}
+		这里为解答部分: \zhlipsum[1]
+	\end{解答}
+	\begin{解析}
+		这里为解析部分: \zhlipsum[1]
+	\end{解析}
 \end{questions}
 \end{document}

@@ -27,7 +27,7 @@
 # 填空题
 ## 不定数填空
 ```latex
-\question[5] $(题干)$ \填空{$(正确答案)$}
+\question[$(分数)$] $(题干)$ \填空{$(正确答案)$}
 \begin{解析}
 	$(解析)$
 \end{解析}
@@ -35,7 +35,27 @@
 
 ## 判断正误
 ```latex
-\question[5] \判断正误{$(正确答案)$} $(题干)$
+\question[$(分数)$] \判断正误{$(正确答案)$} $(题干)$
+\begin{解析}
+	$(解析)$
+\end{解析}
+```
+
+
+# 简答题
+```latex
+\question[$(分数)$] $(题干)$
+\begin{parts}
+	\part[$(分数)$] $(题干)$
+		\begin{subparts}
+			\subpart[$(分数)$] $(题干)$
+			\subpart[$(分数)$] $(题干)$
+		\end{subparts}
+	\part[$(分数)$] $(题干)$
+\end{parts}
+\begin{解答}
+	$(解答)$
+\end{解答}
 \begin{解析}
 	$(解析)$
 \end{解析}
