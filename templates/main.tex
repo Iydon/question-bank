@@ -1,0 +1,87 @@
+% !Mode:: "TeX:UTF-8"
+% !TEX program  = xelatex
+\newcommand{\学校全称}{南方科技大学}
+\newcommand{\学校英文}{Southern University of Science and Technology}
+\newcommand{\学校简称}{SUSTech}
+\newcommand{\学年学期}{2019--2020学年秋季学期}
+\newcommand{\科目全称}{计算金融}
+\newcommand{\科目代码}{MA216}
+\newcommand{\试卷类别}{A}
+\newcommand{\考试方式}{闭卷}
+\newcommand{\打印纸张}{a4paper} % 有待处理 a3paper 的结构问题
+\newcommand{\展示答案}{true} % true or false
+
+
+
+\documentclass{exam}
+	% 使用 XeLaTeX 或者 LuaLaTeX 编译.
+	\usepackage{ifxetex,ifluatex}
+	\usepackage{ifthen}
+		\ifthenelse{\boolean{xetex}\OR\boolean{luatex}}{}{
+			\errmessage{You Should Use XeLaTeX or LuaLaTeX To Compile.}}
+	% 配置选项.
+	\usepackage{geometry}
+		\geometry{layout=\打印纸张}
+	\usepackage{xstring}
+		\IfStrEq{\展示答案}{true}{\printanswers}{}
+	% 使用中文, 颜色, 数学符号等.
+	\usepackage{ctex,xcolor,mathtools,amssymb}
+	% Exam 文类选项
+		% 提示语配置
+		\renewcommand{\solutiontitle}{\noindent\textbf{答案:}}
+		% 正确答案样式
+		\CorrectChoiceEmphasis{\color{black}\bfseries}
+		% 分数计量
+		\pointpoints{分}{分} % 单复数
+		\bonuspointpoints{分 (附加)}{分 (附加)} % 附加分单复数
+		% 宏与环境
+		\newenvironment{不定项选择}%
+			{\begin{oneparchoices}}%
+			{\end{oneparchoices}}
+		\newenvironment{纵向不定项选择}%
+			{\begin{choices}}%
+			{\end{choices}}
+		\newcommand{\填空}[1]{\fillin[#1]}
+		\newcommand{\判断正误}[1]{\fillin[#1][0.25in]}
+		\newenvironment{解析}%
+			{\renewcommand{\solutiontitle}{\noindent\textbf{解析:}}\begin{solutionorbox}}
+			{\renewcommand{\solutiontitle}{\noindent\textbf{答案:}}\end{solutionorbox}}
+	% 测试文档
+	\usepackage{zhlipsum}
+\begin{document}
+\begin{questions}
+	% 不定项选择题
+	\question[5] 本题为不定项选择.\par
+	\begin{不定项选择}
+		\choice 错误答案
+		\CorrectChoice 正确答案
+		\choice 错误答案
+		\CorrectChoice 正确答案
+		\choice 错误答案
+	\end{不定项选择}
+	\begin{解析}
+		这里为解析部分: \zhlipsum[1]
+	\end{解析}
+	\question[5] 本题为纵向不定项选择.
+	\begin{纵向不定项选择}
+		\choice 错误答案
+		\CorrectChoice 正确答案
+		\choice 错误答案
+		\CorrectChoice 正确答案
+		\choice 错误答案
+	\end{纵向不定项选择}
+	\begin{解析}
+		这里为解析部分: \zhlipsum[1]
+	\end{解析}
+	% 填空题
+	\question[5] 本题为填空题, 此空为\填空{正确答案}.
+	\begin{解析}
+		这里为解析部分: \zhlipsum[1]
+	\end{解析}
+	\question[5] \判断正误{T} 本题为判断正误题.
+	\begin{解析}
+		这里为解析部分: \zhlipsum[1]
+	\end{解析}
+	% 简答题
+\end{questions}
+\end{document}
