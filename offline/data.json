@@ -61,7 +61,19 @@
         "type": "不定数填空",
         "description": "本题为\\填空{不定数填空}.",
         "score": "5",
+        "analysis": "这里为解析部分."
+    },
+    {
+        "type": "判断正误",
+        "description": "\\判断正误{T}本题是判断正误.",
+        "score": "5",
+        "difficulty": "0.1",
         "analysis": "这里为解析部分.",
         "remark": "本题考察了模板的使用."
+    },
+    {
+        "type": "判断正误",
+        "description": "\\判断正误{F}本题是填空.",
+        "score": "5"
     }
 ]

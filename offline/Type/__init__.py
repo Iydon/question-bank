@@ -11,6 +11,6 @@
 from . import latex, models
 
 
-_types = ('不定项选择', '纵向不定项选择', '不定数填空')
+_types = ('不定项选择', '纵向不定项选择', '不定数填空', '判断正误')
 __import__(f'{__package__}.models', fromlist=_types)
 types = {_type: getattr(models, _type) for _type in _types}

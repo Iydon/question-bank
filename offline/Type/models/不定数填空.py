@@ -42,6 +42,11 @@ class api:
         Example
         -------
         >>> print(self.render())
+        % 本题考察了模板的使用.
+        \question[5] 本题为\填空{不定数填空}.\par
+        \begin{解析}
+        这里为解析部分.
+        \end{解析}w
         '''
         _remark = self._remark or '%'
         _question = f'\\question[{self._score}] {self._description}\\par'

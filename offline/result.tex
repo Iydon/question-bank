@@ -9,7 +9,7 @@
 \newcommand{\试卷类别}{A}
 \newcommand{\考试方式}{闭卷}
 \newcommand{\打印纸张}{a4paper}
-\newcommand{\展示答案}{false}
+\newcommand{\展示答案}{true}
 
 \documentclass{exam}
 % 使用 XeLaTeX 或者 LuaLaTeX 编译.
@@ -55,9 +55,9 @@
 % 本题考察了模板的使用.
 \question[5] 本题为不定项选择.\par
 \begin{不定项选择}
-\CorrectChoice 正确答案-3
 \choice 错误答案-2
 \choice 错误答案-1
+\CorrectChoice 正确答案-3
 \CorrectChoice 正确答案-4
 \end{不定项选择}
 \begin{解析}
@@ -68,9 +68,9 @@
 %
 \question[5] 本题为不定项选择.\par
 \begin{不定项选择}
+\choice 错误答案-1
 \CorrectChoice 正确答案-3
 \CorrectChoice 正确答案-4
-\choice 错误答案-1
 \choice 错误答案-2
 \end{不定项选择}
 
@@ -79,10 +79,10 @@
 % 本题考察了模板的使用.
 \question[5] 本题为不定项选择.\par
 \begin{纵向不定项选择}
-\choice 错误答案-1
-\choice 错误答案-2
 \CorrectChoice 正确答案-4
 \CorrectChoice 正确答案-3
+\choice 错误答案-2
+\choice 错误答案-1
 \end{纵向不定项选择}
 \begin{解析}
 这里为解析部分.
@@ -93,9 +93,9 @@
 \question[5] 本题为不定项选择.\par
 \begin{纵向不定项选择}
 \choice 错误答案-1
-\choice 错误答案-2
-\CorrectChoice 正确答案-4
 \CorrectChoice 正确答案-3
+\CorrectChoice 正确答案-4
+\choice 错误答案-2
 \end{纵向不定项选择}
 
 
@@ -107,11 +107,23 @@
 \end{解析}
 
 
-% 本题考察了模板的使用.
+%
 \question[5] 本题为\填空{不定数填空}.\par
 \begin{解析}
 这里为解析部分.
 \end{解析}
+
+
+% 本题考察了模板的使用.
+\question[5] \判断正误{T}本题是判断正误.\par
+\begin{解析}
+这里为解析部分.
+\end{解析}
+
+
+%
+\question[5] \判断正误{F}本题是填空.\par
+
 
 \end{questions}
 \end{document}
