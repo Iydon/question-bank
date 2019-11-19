@@ -78,7 +78,7 @@
 \项目名称\ (下称本项目) 旨在将试卷的格式与数据分离 (即分离为前端, 后端及数据库): 使用 \json\ 数据格式或数据库 (如 \sql) 来存储题目数据; 使用 \TeX\ 系统对题目进行排版, 数据与版式之间通过 \python\ 编程语言操作数据库以生成 \TeX\ 源代码.
 
 本项目的思想来自于使用特定工具解决特定的问题, 同时从工程的角度审视问题, 寻求易于拓展的解决方案:
-\begin{enumerate*}[label={(\arabic*)}]
+\begin{enumerate*}[label=\textbf{(\arabic*)}]
     \item \TeX\ 擅长排版, 但用作运算 (如计数器的数学运算等) 的用户接口较弱, 而支持嵌入式脚本的原生引擎 \hologo{LuaLaTeX} 则需要更复杂的逻辑实现, 不利于以后对程序进行改进与维护;
     \item \python\ 为``胶水语言'', 功能库众多, 可以根据特定需求做特定事情 (比如从数据库筛选题目, 制作网页应用等), 但是排版所用库 (例如 \pylatex, \pythondocx) 提供的功能不如 \TeX\ 丰富且学习成本较大;
     \item 数据库仅用来存储数据与筛选数据, 所以在本项目中不能单独使用. 而 \python\ 存在 ORM (Object Relational Mapping, 例如 \sqlalchemy\cite{sqlalchemy}), 可用来操作数据库. 但是本项目一开始是作为本地版本开发, 数据应追求可读性, 所以使用纯文本记录数据 (例如数据格式 \json) 可以更方便地修改数据.
@@ -122,7 +122,7 @@
 
 \subsection{项目范围}
 本项目重点为题库整理与试卷构建. 在前期项目 \href{https://github.com/Iydon/LaTeX_template/tree/master/Exam}{Exam} 中, 我们完全使用 \TeX\ 编写题库, 通过 \TeX\ 的 \verb|\input| 机制将不同时间的题目分离, 与此同时产生一系列问题:
-\begin{enumerate*}[label={(\arabic*)}]
+\begin{enumerate*}[label=\textbf{(\arabic*)}]
     \item 题目看似分离, 但是在根据已有题目来构建新的试卷时, 还需要将 \TeX\ 的冗余部分重新书写一遍;
     \item 为了追求注释部分 \verb|\input| 后仍可以运行, 导言区需要将所有的依赖记录下来, 从而造成性能上的损失;
     \item 前期项目提供众多的 \api\ (尤其解题框), 构建题库的时间跨度较大导致使用 \api\ 不统一.
@@ -140,16 +140,22 @@
 
 \section{总体描述}\label{S:overall-description}
 \subsection{产品总览}
-本项目首先开发本地版本, 如果有需求, 则继续开发在线版本 (即套用离线版本, 但使用数据库存储数据, 同时添加类似 \href{https://github.com/Iydon}{\github} 的用户管理).
+本项目首先开发本地版本. 如果有需求, 则继续开发在线版本 (即套用离线版本, 但使用数据库存储数据, 同时添加类似 \href{https://github.com/Iydon}{\github} 的用户管理); 如果有需求, 则继续开发本地版本的桌面版本, 避免用户命令行编译 (即将本地版本 \api\ 综合起来, 添加 \gui\ 支持).
 
-Describe the context and origin of the product being specified in this SRS.  
-For example, state whether this product is a follow-on member of a product 
-family, a replacement for certain existing systems, or a new, self-contained 
-product. If the SRS defines a component of a larger system, relate the 
-requirements of the larger system to the functionality of this software and 
-identify interfaces between the two. A simple diagram that shows the major 
-components of the overall system, subsystem interconnections, and external 
-interfaces can be helpful.
+本项目的简介请参考第~\ref{S:introduction}节. 本地版本主要分为三个部分: \begin{enumerate*}[label=\textbf{(\arabic*)}]
+    \item 模板文件, 主要为本地版本的默认模板, 如果想自定义, 可以手动修改提供模板 (目前为硬编码在 \python\ 文件中, 实现初步功能后代码重构会解决此问题);
+    \item 题库数据文件, 主要以 \json\ 数据结构存储题目信息, 针对不同的题型设计了不同的键值来存储, 同时继承了相同的键值 (例如题目类型, 描述, 分数, 难度, 解析), 数据模型划分为不定项选择, 不定数填空, 判断正误;
+    \item 代码逻辑部分不建议非开发人员修改, 而开发人员不需要阅读此条.
+\end{enumerate*}
+
+在线版本除了在线自定义模板文件及题库数据文件外, 增加存储题库, 合作编辑及版本控制的功能, 此处可以参考 \href{https://github.com/Iydon}{\github} 的形式. 主要分为六个部分: \begin{enumerate*}[label=\textbf{(\arabic*)}]
+    \item 注册用户;
+    \item 创立公有, 私有题库;
+    \item 添加合作者至题库;
+    \item 上传, 下载题库;
+    \item 在线编辑题库 (数据及样式);
+    \item 在线生成试卷.
+\end{enumerate*}
 
 
 \subsection{产品功能}
