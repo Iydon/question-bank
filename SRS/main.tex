@@ -183,47 +183,38 @@
 
 
 \subsection{用户类别及其特征}
-Identify the various user classes that you anticipate will use this product.  
-User classes may be differentiated based on frequency of use, subset of product 
-functions used, technical expertise, security or privilege levels, educational 
-level, or experience. Describe the pertinent characteristics of each user class.  
-Certain requirements may pertain only to certain user classes. Distinguish the 
-most important user classes for this product from those who are less important 
-to satisfy.
+\begin{center}
+    \begin{tabularx}{\textwidth}{cX}
+        \toprule
+            用户类别 & 特征 \\
+        \midrule
+        \rowcolor[HTML]{EFEFEF}
+            开发人员 & 可以熟练运用命令行或终端, 可以理解产品的代码及架构, 看完文档之后便可以运用本项目. \\
+            编程入门者 & 可以初步使用命令行, 看完文档之后便可以尝试着在脱离 \gui\ 的前提下使用本项目. \\
+            无编程经验者 & 没有接触编程, 在看过文档之后不能运用本项目, 此时应提供批处理脚本或 \gui, 可以适当提供线下辅助的使用学习. \\
+        \bottomrule
+    \end{tabularx}
+\end{center}
 
 
 \subsection{操作环境}
-Describe the environment in which the software will operate, including the 
-hardware platform, operating system and versions, and any other software 
-components or applications with which it must peacefully coexist.
+本项目的本地版本主要采用可跨平台的 \TeX, \python\ 编写, 所以可以运行在主流操作系统中, 相应地需要配置编译环境, 具体可参考 \href{https://tex.readthedocs.io}{\readthedocs} 及 \href{https://wiki.python.org/moin/BeginnersGuide/Download}{\python} 官网进行配置. 而在线版本则只需要有可以联网并且安装好了浏览器即可.
 
 
 \subsection{产品设计及其实现中的约束}
-Describe any items or issues that will limit the options available to the 
-developers. These might include: corporate or regulatory policies; hardware 
-limitations (timing requirements, memory requirements); interfaces to other 
-applications; specific technologies, tools, and databases to be used; parallel 
-operations; language requirements; communications protocols; security 
-considerations; design conventions or programming standards (for example, if the 
-customer's organization will be responsible for maintaining the delivered 
-software).
+产品设计见第~\ref{S:introduction}~节及第~\ref{S:overall-description}~节. 实现中的约束包括: \begin{enumerate*}[label=\textbf{(\arabic*)}]
+    \item 本地版本用户可能无法配置好 \TeX, \python\ 环境;
+    \item 本地版本用户可能对数据库的修改存在误差, 导致结果出现错误, 但是本项目中前期不采用捕获异常操作, 可能导致错误不易理解;
+    \item 在线版本用户可能设置权限出现问题, 导致私有题库外泄.
+\end{enumerate*}
 
 
 \subsection{用户文档}
-List the user documentation components (such as user manuals, on-line help, 
-and tutorials) that will be delivered along with the software. Identify any 
-known user documentation delivery formats or standards.
+目前本项目尚未作出初步版本, 请先参考本文档, 等到项目完成后, 将替代此部分.
 
 
 \subsection{假设与依赖}
-List any assumed factors (as opposed to known facts) that could affect the 
-requirements stated in the SRS. These could include third-party or commercial 
-components that you plan to use, issues around the development or operating 
-environment, or constraints. The project could be affected if these assumptions 
-are incorrect, are not shared, or change. Also identify any dependencies the 
-project has on external factors, such as software components that you intend to 
-reuse from another project, unless they are already documented elsewhere (for 
-example, in the vision and scope document or the project plan).
+假设用户可以遵循数据库的设计, 可以参考文档配置出高质量的模板文件. 本地版本的成功运行依赖于以上对用户的假设, 而在线版则需考虑服务器安全问题, 假设用户会制造出不遵循规范的数据, 所以在写入数据库之前需要对数据进行严格的校验.
 
 
 
@@ -346,7 +337,7 @@ possible. At the least, clarify the relative preferences for various attributes,
 such as ease of use over ease of learning.
 
 
-\subsection{商业授权规则}
+\subsection{授权规则}
 List any operating principles about the product, such as which individuals or 
 roles can perform which functions under specific circumstances. These are not 
 functional requirements in themselves, but they may imply certain functional 
