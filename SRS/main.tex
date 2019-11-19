@@ -33,6 +33,8 @@
     %% 参考文献
     \usepackage[style=gb7714-2015]{biblatex}
         \addbibresource{ref.bib}
+    %% 代码
+    \usepackage{minted}
     % Nouns
     \newcommand{\github}{\texttt{GitHub}}
     \newcommand{\python}{\texttt{Python}}
@@ -48,6 +50,8 @@
     \newcommand{\pipfile}{\texttt{Pipfile}}
     \newcommand{\api}{\texttt{API}}
     \newcommand{\gui}{\texttt{GUI}}
+    \newcommand{\pepeight}{\texttt{PEP 8}}
+    \newcommand{\click}{\texttt{click}}
     % Information
     \title{软件需求说明: \项目名称\ (\项目版本\ 版本)}
     \author{\项目组织}
@@ -220,141 +224,140 @@
 
 \section{外部接口的要求}\label{S:external-interface-requirements}
 \subsection{用户接口}
-Describe the logical characteristics of each interface between the software 
-product and the users. This may include sample screen images, any GUI standards 
-or product family style guides that are to be followed, screen layout 
-constraints, standard buttons and functions (e.g., help) that will appear on 
-every screen, keyboard shortcuts, error message display standards, and so on.  
-Define the software components for which a user interface is needed. Details of 
-the user interface design should be documented in a separate user interface 
-specification.
+本地非桌面版本需要考虑用户接口, \python\ 代码需使用 \click\ 库添加命令行使用的参数.目前本项目尚未完善, 所以暂时空缺此小节.
 
 
 \subsection{硬件接口}
-Describe the logical and physical characteristics of each interface between 
-the software product and the hardware components of the system. This may include 
-the supported device types, the nature of the data and control interactions 
-between the software and the hardware, and communication protocols to be 
-used.
+本项目不涉及对硬件进行操作, 所以无硬件接口.
 
 
 \subsection{软件接口}
-Describe the connections between this product and other specific software 
-components (name and version), including databases, operating systems, tools, 
-libraries, and integrated commercial components. Identify the data items or 
-messages coming into the system and going out and describe the purpose of each.  
-Describe the services needed and the nature of communications. Refer to 
-documents that describe detailed application programming interface protocols.  
-Identify data that will be shared across software components. If the data 
-sharing mechanism must be implemented in a specific way (for example, use of a 
-global data area in a multitasking operating system), specify this as an 
-implementation constraint.
+所有的代码需要遵循 \href{https://www.python.org/dev/peps/pep-0008/}{\pepeight} 协议, 但是为确保向前兼容, 故不推荐使用类型推导式 (即 \mintinline{python}{num: int = 1} 与 \mintinline{python}{def f() -> int: return int()}), 此外所有的接口需参照以下函数的定义 (\python):
+\begin{minted}[breaklines,breakanywhere,linenos,frame=single]{python}
+def api_name_must_be_explicit(arg_one, arg_two='default_value', *args, **kwargs):
+    '''API name must be explicit, this is a summary of this function.
+
+    :Argument:
+        - arg_one: <type>, <explanation>
+        - arg_two: str, <explanation>, default is 'default_value'
+        - args: list, <explanation>
+        - kwargs: dict, <explanation>
+
+    :Return:
+        - <case_one>, <explanation>
+        - <case_two>, <explanation>
+        - <...>
+
+    :Example:
+        >>> api_name_must_be_explicit(None)
+
+    :Reference:
+        - [<ref_name>](<ref_link>)
+    '''
+    <function_definition>
+\end{minted}
 
 
 \subsection{通信接口}
-Describe the requirements associated with any communications functions 
-required by this product, including e-mail, web browser, network server 
-communications protocols, electronic forms, and so on. Define any pertinent 
-message formatting. Identify any communication standards that will be used, such 
-as FTP or HTTP. Specify any communication security or encryption issues, data 
-transfer rates, and synchronization mechanisms.
+本项目的本地版本不涉及通信, 只有在线版本提供通信接口. 目前在线版本尚未完善, 所以暂时空缺此小节.
 
 
 
-\section{系统功能}\label{S:system-features}
-This template illustrates organizing the functional requirements for the 
-product by system features, the major services provided by the product. You may 
-prefer to organize this section by use case, mode of operation, user class, 
-object class, functional hierarchy, or combinations of these, whatever makes the 
-most logical sense for your product.
-\subsection{系统特性一}
-Don't really say ``System Feature 1.'' State the feature name in just a few 
-words.
-\subsubsection{说明及其优先级}
-Provide a short description of the feature and indicate whether it is of 
-High, Medium, or Low priority. You could also include specific priority 
-component ratings, such as benefit, penalty, cost, and risk (each rated on a 
-relative scale from a low of 1 to a high of 9).
+% 添加题通功能时取消注释此小节并完善内容
+% \section{系统功能}\label{S:system-features}
+% This template illustrates organizing the functional requirements for the
+% product by system features, the major services provided by the product. You may
+% prefer to organize this section by use case, mode of operation, user class,
+% object class, functional hierarchy, or combinations of these, whatever makes the
+% most logical sense for your product.
+% \subsection{系统特性一}
+% Don't really say ``System Feature 1.'' State the feature name in just a few
+% words.
+% \subsubsection{说明及其优先级}
+% Provide a short description of the feature and indicate whether it is of
+% High, Medium, or Low priority. You could also include specific priority
+% component ratings, such as benefit, penalty, cost, and risk (each rated on a
+% relative scale from a low of 1 to a high of 9).
 
-\subsubsection{灵感来源}
-List the sequences of user actions and system responses that stimulate the 
-behavior defined for this feature. These will correspond to the dialog elements 
-associated with use cases.
+% \subsubsection{灵感来源}
+% List the sequences of user actions and system responses that stimulate the
+% behavior defined for this feature. These will correspond to the dialog elements
+% associated with use cases.
 
-\subsubsection{功能性需求}
-Itemize the detailed functional requirements associated with this feature.  
-These are the software capabilities that must be present in order for the user 
-to carry out the services provided by the feature, or to execute the use case.  
-Include how the product should respond to anticipated error conditions or 
-invalid inputs. Requirements should be concise, complete, unambiguous, 
-verifiable, and necessary. Use ``TBD'' as a placeholder to indicate when necessary 
-information is not yet available.
+% \subsubsection{功能性需求}
+% Itemize the detailed functional requirements associated with this feature.
+% These are the software capabilities that must be present in order for the user
+% to carry out the services provided by the feature, or to execute the use case.
+% Include how the product should respond to anticipated error conditions or
+% invalid inputs. Requirements should be concise, complete, unambiguous,
+% verifiable, and necessary. Use ``TBD'' as a placeholder to indicate when necessary
+% information is not yet available.
 
-Each requirement should be uniquely identified with a sequence number or a 
-meaningful tag of some kind.
+% Each requirement should be uniquely identified with a sequence number or a
+% meaningful tag of some kind.
 
-\begin{itemize}
-    \item REQ-1:
-    \item REQ-2:
-\end{itemize}
+% \begin{itemize}
+%     \item REQ-1:
+%     \item REQ-2:
+% \end{itemize}
 
 
 
 \section{系统其他非功能需求}\label{S:other-nonfunctional-requirements}
 \subsection{系统性能需求}
-If there are performance requirements for the product under various 
-circumstances, state them here and explain their rationale, to help the 
-developers understand the intent and make suitable design choices. Specify the 
-timing relationships for real time systems. Make such requirements as specific 
-as possible. You may need to state performance requirements for individual 
+If there are performance requirements for the product under various
+circumstances, state them here and explain their rationale, to help the
+developers understand the intent and make suitable design choices. Specify the
+timing relationships for real time systems. Make such requirements as specific
+as possible. You may need to state performance requirements for individual
 functional requirements or features.
 
 
 \subsection{系统安全需求}
-Specify those requirements that are concerned with possible loss, damage, or 
-harm that could result from the use of the product. Define any safeguards or 
-actions that must be taken, as well as actions that must be prevented. Refer to 
-any external policies or regulations that state safety issues that affect the 
-product's design or use. Define any safety certifications that must be 
+Specify those requirements that are concerned with possible loss, damage, or
+harm that could result from the use of the product. Define any safeguards or
+actions that must be taken, as well as actions that must be prevented. Refer to
+any external policies or regulations that state safety issues that affect the
+product's design or use. Define any safety certifications that must be
 satisfied.
 
 
 \subsection{系统保密需求}
-Specify any requirements regarding security or privacy issues surrounding use 
-of the product or protection of the data used or created by the product. Define 
-any user identity authentication requirements. Refer to any external policies or 
-regulations containing security issues that affect the product. Define any 
+Specify any requirements regarding security or privacy issues surrounding use
+of the product or protection of the data used or created by the product. Define
+any user identity authentication requirements. Refer to any external policies or
+regulations containing security issues that affect the product. Define any
 security or privacy certifications that must be satisfied.
 
 
 \subsection{系统质量指标}
-Specify any additional quality characteristics for the product that will be 
-important to either the customers or the developers. Some to consider are: 
-adaptability, availability, correctness, flexibility, interoperability, 
-maintainability, portability, reliability, reusability, robustness, testability, 
-and usability. Write these to be specific, quantitative, and verifiable when 
-possible. At the least, clarify the relative preferences for various attributes, 
+Specify any additional quality characteristics for the product that will be
+important to either the customers or the developers. Some to consider are:
+adaptability, availability, correctness, flexibility, interoperability,
+maintainability, portability, reliability, reusability, robustness, testability,
+and usability. Write these to be specific, quantitative, and verifiable when
+possible. At the least, clarify the relative preferences for various attributes,
 such as ease of use over ease of learning.
 
 
 \subsection{授权规则}
-List any operating principles about the product, such as which individuals or 
-roles can perform which functions under specific circumstances. These are not 
-functional requirements in themselves, but they may imply certain functional 
+List any operating principles about the product, such as which individuals or
+roles can perform which functions under specific circumstances. These are not
+functional requirements in themselves, but they may imply certain functional
 requirements to enforce the rules.
 
 
 
 \section{附录}\label{S:appendix}
-Define any other requirements not covered elsewhere in the SRS. This might 
-include database requirements, internationalization requirements, legal 
-requirements, reuse objectives for the project, and so on. Add any new sections 
+Define any other requirements not covered elsewhere in the SRS. This might
+include database requirements, internationalization requirements, legal
+requirements, reuse objectives for the project, and so on. Add any new sections
 that are pertinent to the project.
 \subsection{附录 A: 词汇表}
 %see https://en.wikibooks.org/wiki/LaTeX/Glossary
-Define all the terms necessary to properly interpret the SRS, including 
-acronyms and abbreviations. You may wish to build a separate glossary that spans 
-multiple projects or the entire organization, and just include terms specific to 
+Define all the terms necessary to properly interpret the SRS, including
+acronyms and abbreviations. You may wish to build a separate glossary that spans
+multiple projects or the entire organization, and just include terms specific to
 a single project in each SRS.
 
 \end{document}
