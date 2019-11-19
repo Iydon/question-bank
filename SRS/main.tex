@@ -52,6 +52,8 @@
     \newcommand{\gui}{\texttt{GUI}}
     \newcommand{\pepeight}{\texttt{PEP 8}}
     \newcommand{\click}{\texttt{click}}
+    \newcommand{\nginx}{\texttt{Nginx}}
+    \newcommand{\https}{\texttt{HTTPS}}
     % Information
     \title{软件需求说明: \项目名称\ (\项目版本\ 版本)}
     \author{\项目组织}
@@ -263,7 +265,7 @@ def api_name_must_be_explicit(arg_one, arg_two='default_value', *args, **kwargs)
 
 
 
-% 添加题通功能时取消注释此小节并完善内容
+% 添加系统功能时取消注释此小节并完善内容
 % \section{系统功能}\label{S:system-features}
 % This template illustrates organizing the functional requirements for the
 % product by system features, the major services provided by the product. You may
@@ -305,59 +307,45 @@ def api_name_must_be_explicit(arg_one, arg_two='default_value', *args, **kwargs)
 
 \section{系统其他非功能需求}\label{S:other-nonfunctional-requirements}
 \subsection{系统性能需求}
-If there are performance requirements for the product under various
-circumstances, state them here and explain their rationale, to help the
-developers understand the intent and make suitable design choices. Specify the
-timing relationships for real time systems. Make such requirements as specific
-as possible. You may need to state performance requirements for individual
-functional requirements or features.
+鉴于家用笔记本可以处理本项目本地版本的计算量 (最大的运算量分配在 \TeX\ 编译上), 所以在项目构思阶段对系统的性内没有要求. 但是在线版本需要考虑系统的性能. 假设在线版本供一个学校使用, 则需要使用高效的服务器架构 (例如 \nginx), 如果经费有限, 则考虑使用排队策略处理请求.
 
 
 \subsection{系统安全需求}
-Specify those requirements that are concerned with possible loss, damage, or
-harm that could result from the use of the product. Define any safeguards or
-actions that must be taken, as well as actions that must be prevented. Refer to
-any external policies or regulations that state safety issues that affect the
-product's design or use. Define any safety certifications that must be
-satisfied.
+系统安全方面的问题交由专业人员处理, 目前能做的是服务器关闭不用端口, 设置长密码及申请 \https\ 安全证书.
 
 
 \subsection{系统保密需求}
-Specify any requirements regarding security or privacy issues surrounding use
-of the product or protection of the data used or created by the product. Define
-any user identity authentication requirements. Refer to any external policies or
-regulations containing security issues that affect the product. Define any
-security or privacy certifications that must be satisfied.
+为保证用户数据的保密性, 则在线版本的数据库存储需进行加密. 常规来讲, 用户的所有数据 (尤其密码) 更需要进行加密处理.
 
 
 \subsection{系统质量指标}
-Specify any additional quality characteristics for the product that will be
-important to either the customers or the developers. Some to consider are:
-adaptability, availability, correctness, flexibility, interoperability,
-maintainability, portability, reliability, reusability, robustness, testability,
-and usability. Write these to be specific, quantitative, and verifiable when
-possible. At the least, clarify the relative preferences for various attributes,
-such as ease of use over ease of learning.
+衡量系统的质量主要有以下三个指标: \begin{enumerate*}[label=\textbf{\arabic*}]
+    \item 本地及在线版本的编译时间;
+    \item 服务器处理请求每秒的数量;
+    \item 在线版本的异常捕获能力.
+\end{enumerate*}
 
 
 \subsection{授权规则}
-List any operating principles about the product, such as which individuals or
-roles can perform which functions under specific circumstances. These are not
-functional requirements in themselves, but they may imply certain functional
-requirements to enforce the rules.
+\subsubsection{教育授权}
+教育授权 (目标为学校) 有待商榷.
+
+\subsubsection{商业授权}
+商业授权 (目标为教育机构) 有待商榷.
 
 
 
-\section{附录}\label{S:appendix}
-Define any other requirements not covered elsewhere in the SRS. This might
-include database requirements, internationalization requirements, legal
-requirements, reuse objectives for the project, and so on. Add any new sections
-that are pertinent to the project.
-\subsection{附录 A: 词汇表}
-%see https://en.wikibooks.org/wiki/LaTeX/Glossary
-Define all the terms necessary to properly interpret the SRS, including
-acronyms and abbreviations. You may wish to build a separate glossary that spans
-multiple projects or the entire organization, and just include terms specific to
-a single project in each SRS.
+% 添加附录时取消注释此小节并完善内容
+% \section{附录}\label{S:appendix}
+% Define any other requirements not covered elsewhere in the SRS. This might
+% include database requirements, internationalization requirements, legal
+% requirements, reuse objectives for the project, and so on. Add any new sections
+% that are pertinent to the project.
+% \subsection{附录 A: 词汇表}
+% %see https://en.wikibooks.org/wiki/LaTeX/Glossary
+% Define all the terms necessary to properly interpret the SRS, including
+% acronyms and abbreviations. You may wish to build a separate glossary that spans
+% multiple projects or the entire organization, and just include terms specific to
+% a single project in each SRS.
 
 \end{document}
